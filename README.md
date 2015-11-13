@@ -1,84 +1,68 @@
-Junior
+# Myers Briggs for Web People
 
+To be answered on a scale of Don't Agree to Strongly Agree, and will tally points for the following:
 
+- Junior/Senior
+- Designer/Developer
+- Front-end/Back-end
 
-Is HTML a programming language?
-No 
+Based on how weighted answers are towards front-end/back-end or designer/developer, the person will be fall into the Generalist or Specialist category.
 
-How long have you been writing code professionally 
-(+5 junior)6 mos ---0--- 5+ years (+5 senior)
-				
-Do you know who paul irish is
-No ------ Yes
+So, a resulting job title might be:
 
-How many programming languages do you know?
-+Senior
+* Junior Designer Front-end Specialist
+* Senior Developer Back-end Generalist
 
+... or something like that.
 
+### The Questions
 
-Senior
-
-
-Designer
-
-I have an opinion about Sketch.
+**I have an opinion about Sketch.**
 + designer
 
-I contribute to open source projects
-+ senior, + developer
+**I contribute to open source projects.**
++ senior
++ developer
 
-There is always more than one way to solve a coding problem.
+**There is always more than one way to solve a coding problem.**
 + senior
 
-This really bothers me <IMG SRC="">
+**This really bothers me `&lt;IMG SRC="">`.**
 + developer
 + senior
 + front-end
 
-I have an opinion about the amount of spaces in my tabs.
+**I have an opinion about the amount of spaces in my tabs.**
 + senior
 + developer
 
-I can write a regex.
+**I can write a regex.**
 + developer
 
-I find it easy to set up my local environment.
+**I find it easy to set up my local environment.**
 + developer
 + senior
 
-I've had a mentee.
+**I've had a mentee.**
 + senior
 
-I regularly answer StackOverflow questions.
+**I regularly ask and answer StackOverflow questions.**
 + senior
 + developer
 
-I get excited about colors.
+**I get excited about colors.**
 + designer
 
-Open Sans is over.
+**I have a strong opinion about Helvetica.**
 + designer
 
-I often find my own posts when Googling for answers.
+**I often find my own posts when Googling for answers.**
 + senior
 
-I regularly update a blog.
+**I regularly update a blog.**
 + senior
 
-This really bothers me [photo of bad kerning].
+**This really bothers me [photo of bad kerning].**
 + designer
 
-
-
-
-Front-end
-
-
-Back-end
-
-
-Generalist
-
-
-Specialist
 
