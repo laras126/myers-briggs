@@ -1,7 +1,7 @@
 var questionsArr = [
   ["Have you ever sharded a database?", "back", "Back-end"],
   ["Do you identify as a designer?", "des", "Designer"],
-  ["Do you identify as a developer?", "sen", "Senior"]
+  ["Do you identify as a developer?", "sen", "Senior"],
   ["Do you look at Sidebar everyday?", "des", "Designer"],
   ["Have you ever submitted a pull request?", "dev", "Developer"],
   ["Is there anything wrong with this?<br><code>&lt;IMG SRC=\"hello.png\"></code>", "dev", "Developer"],
