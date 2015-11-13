@@ -15,6 +15,10 @@ So, a resulting job title might be:
 
 ... or something like that.
 
+### Contributing
+
+Write some questions and PR!
+
 ### The Questions
 
 **I have an opinion about Sketch.**
@@ -27,7 +31,7 @@ So, a resulting job title might be:
 **There is always more than one way to solve a coding problem.**
 + senior
 
-**This really bothers me `&lt;IMG SRC="">`.**
+**This really bothers me `<IMG SRC="">`.**
 + developer
 + senior
 + front-end
@@ -58,6 +62,9 @@ So, a resulting job title might be:
 
 **I often find my own posts when Googling for answers.**
 + senior
+
+**Tequila is delicious.**
++ nothing
 
 **I regularly update a blog.**
 + senior
