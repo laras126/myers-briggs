@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <form action="#">
+            
+            <fieldset id="answers">
+                <p id="question">Start answering questions to generate your job title.</p>
+                <div class="bottom-wrap">
+                    <input id="answerL" name="answer" type="radio"/>
+                    <label for="answerL">Yes</label>
+                    <input id="answerR" name="answer" type="radio"/>
+                    <label for="answerR">No</label>
+                </div>
+            </fieldset>
+
+            <fieldset id="results">
+                <div class="result">
+                    <div class="labels">
+                        <label>Front-end</label>
+                        <label>Back-end</label>
+                    </div>
+                    <div class="bars">
+                        <div id="front" class="bar result-1"></div>
+                        <div id="back" class="bar result-1"></div>
+                    </div>
+                </div>
+                <div class="result">
+                    <div class="labels">
+                        <label>Designer</label>
+                        <label>Developer</label>
+                    </div>
+                    <div class="bars">
+                        <div id="des" class="bar result-2"></div>
+                        <div id="dev" class="bar result-2"></div>
+                    </div>
+                </div>
+                <div class="result">
+                    <div class="labels">
+                        <label>Generalist</label>
+                        <label>Specialist</label>
+                    </div>
+                    <div class="bars">
+                        <div id="gen" class="bar result-3"></div>
+                        <div id="spec" class="bar result-3"></div>
+                    </div>
+                </div>
+                <div class="result">
+                    <div class="labels">
+                        <label>Junior</label>
+                        <label>Senior</label>
+                    </div>
+                    <div class="bars">
+                        <div id="jun" class="bar result-4"></div>
+                        <div id="sen" class="bar result-4"></div>
+                    </div>
+                </div>
+            </fieldset>
+
+        </form>
+        
+        <!-- shame -->
+        <br>
+        <br>
+        <!-- /shame -->
+        
+        <p class="meta-title">Your Job Title:</p>
+        
+        <h3><span id="payResult">Level </span><span id="sideResult">Front/Back </span><span id="devResult">Designer/Dev </span><span id="genResult">Type </span></h3>
+        
+        <script src="main.js"></script>
+    </body>
+</html>

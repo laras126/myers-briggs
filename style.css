@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+}
+
+.cf:before, .labels:before,
+.cf:after,
+.labels:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.cf:after, .labels:after {
+  clear: both;
+}
+
+body {
+  font-family: 'Helvetica';
+  text-align: center;
+}
+
+h4 {
+  margin-top: 2rem;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+fieldset {
+  margin: 1rem;
+  border: 0;
+  position: relative;
+}
+
+.meta-title {
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#answers {
+  height: 100px;
+}
+
+.bottom-wrap {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+#results {
+  position: relative;
+}
+
+#results:after {
+  content: " ";
+  border-left: 3px solid #323232;
+  position: absolute;
+  top: 10%;
+  left: calc(50% - 1px);
+  height: 110%;
+}
+
+.result {
+  width: 100%;
+}
+.result label:nth-child(1) {
+  float: left;
+}
+.result label:nth-child(2) {
+  float: right;
+}
+
+.labels {
+  padding-top: 1rem;
+}
+
+.labels,
+.bars {
+  position: relative;
+}
+
+.bar {
+  width: 1%;
+  height: 1rem;
+  position: absolute;
+  top: 0;
+}
+
+.bar:nth-child(2) {
+  left: 50%;
+}
+
+.bar:nth-child(1) {
+  right: 50%;
+}
+
+.labels {
+  margin-top: 1rem;
+}
+.labels label {
+  font-size: 0.7rem;
+}
+
+.result-1 {
+  background-color: #bc220f;
+}
+
+.result-2 {
+  background-color: #e31135;
+}
+
+.result-3 {
+  background-color: #e94e4e;
+}
+
+.result-4 {
+  background-color: #f84a2f;
+}
