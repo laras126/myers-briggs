@@ -1,0 +1,15 @@
+--color: #BADA55;
+
+h1 {
+  color: var(--color);
+}
+
+.answers li {
+  padding: 1rem;
+  margin-bottom: 0.2rem;
+  background-color: #BADA55;
+}
+
+.bar > span {
+  height: 1rem;
+}
