@@ -1,4 +1,6 @@
 
+// Static questions data
+
 const questionsArr = [
   {
     text: 'Have you ever sharded a database?',
@@ -18,22 +20,17 @@ const questionsArr = [
   }
 ];
 
-function $(el) {
-  return document.querySelector(el);
-}
 
-function $$(el) {
-  return document.querySelectorAll(el);
-}
 
+// App object
 
 const App = {
 
   el: {
-    answers: $$('#answers li'),
-    question: $('#question'),
-    leftScore: $('#leftValue'),
-    rightScore: $('#rightValue')
+    answers: document.querySelectorAll('#answers > li'),
+    question: document.querySelector('#question'),
+    leftScore: document.querySelector('#leftValue'),
+    rightScore: document.querySelector('#rightValue')
   },
 
   data: {
@@ -51,7 +48,7 @@ const App = {
 
   updateScore(str) {
 
-    let int = parseInt(str);
+    let int = parseInt(str); // Make sure the value is an integer
     let currentQuestion = questionsArr[this.data.questionIndex];
 
     switch(currentQuestion.pointsFor) {
@@ -65,24 +62,28 @@ const App = {
   },
 
   updateQuestion() {
-    this.data.questionIndex++;
-    this.el.question.innerHTML = questionsArr[this.data.questionIndex].text;
+
+    // If there are more questions, update the current question index and text
+    if (this.data.questionIndex < questionsArr.length - 1) {
+      this.data.questionIndex++;
+      this.el.question.innerHTML = questionsArr[this.data.questionIndex].text;
+    } else {
+      this.el.question.innerHTML = "No more questions!";
+    }
+
   },
 
-  handleAnswers() {
+  applyUpdates() {
 
     // Add click event to all possible answers
     for( let i=0;i<this.el.answers.length;i++ ) {
       let selectedAnswer = this.el.answers[i];
+      let score = selectedAnswer.innerHTML;
 
-      // If there is another question, update the question text and scores
-      selectedAnswer.addEventListener('click', () => {
-        if (this.data.questionIndex < questionsArr.length - 1) {
-          this.updateQuestion();
-          this.updateScore(selectedAnswer.innerHTML);
-        } else {
-          this.el.question.innerHTML = "No more questions!";
-        }
+      // Update the question and score when answer is selected
+      selectedAnswer.addEventListener( 'click', () => {
+        this.updateQuestion();
+        this.updateScore(score);
       });
     }
 
@@ -90,8 +91,12 @@ const App = {
 
   init() {
     this.setDefaultValues();
-    this.handleAnswers();
+    this.applyUpdates();
   }
 }
+
+
+
+// Run app
 
 App.init();
