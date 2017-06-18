@@ -1,13 +1,28 @@
---color: #BADA55;
+
+body {
+  font-family: 'Verdana', sans-serif;
+}
 
 h1 {
-  color: var(--color);
+  color: #BADA55;
+}
+
+.answers {
+  display: flex;
+  padding-left: 0;
 }
 
 .answers li {
+  cursor: pointer;
   padding: 1rem;
   margin-bottom: 0.2rem;
   background-color: #BADA55;
+  list-style-type: none;
+  border: 1px solid #BADA55;
+}
+
+.answers li:hover {
+  border-color: indianred;
 }
 
 .bar > span {

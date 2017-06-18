@@ -83,7 +83,7 @@ const questionsArr = [
     pointsFor: 'right',
   },
   {
-    text: 'This really bothers me <IMG SRC=\"\">.',
+    text: 'This really bothers me: &lt;IMG SRC=\"\">.',
     pointsFor: 'right'
   },
   {
@@ -112,8 +112,16 @@ const App = {
     questionIndex: 0
   },
 
+  haveMoreQuestions() {
+    if( this.data.questionIndex <= questionsArr.length ) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
   setDefaultValues() {
-    this.el.question.innerHTML   = questionsArr[this.data.questionIndex].text;
+    this.el.question.innerHTML   = questionsArr[this.data.questionIndex].text + ' // ' + questionsArr[this.data.questionIndex].pointsFor;
     this.el.leftScore.innerHTML  = this.data.left;
     this.el.rightScore.innerHTML = this.data.right;
   },
@@ -123,26 +131,19 @@ const App = {
     let int = parseInt(str); // Make sure the value is an integer
     let currentQuestion = questionsArr[this.data.questionIndex];
 
-    switch(currentQuestion.pointsFor) {
-      case 'left':
-        this.data.left += int;
-        this.el.leftScore.innerHTML  = this.data.left;
-      case 'right':
-        this.data.right += int;
-        this.el.rightScore.innerHTML = this.data.right;
+    // There is a more efficient way to do this
+    if( currentQuestion.pointsFor == 'left' ) {
+      this.data.left += int;
+      this.el.leftScore.innerHTML  = this.data.left;
+    } else {
+      this.data.right += int;
+      this.el.rightScore.innerHTML = this.data.right;
     }
   },
 
   updateQuestion() {
-
-    // If there are more questions, update the current question index and text
-    if (this.data.questionIndex < questionsArr.length - 1) {
-      this.data.questionIndex++;
-      this.el.question.innerHTML = questionsArr[this.data.questionIndex].text;
-    } else {
-      this.el.question.innerHTML = "No more questions!";
-    }
-
+    this.data.questionIndex++;
+    this.el.question.innerHTML = questionsArr[this.data.questionIndex].text + ' // ' + questionsArr[this.data.questionIndex].pointsFor;
   },
 
   applyUpdates() {
@@ -154,11 +155,14 @@ const App = {
 
       // Update the question and score when answer is selected
       selectedAnswer.addEventListener( 'click', () => {
-        this.updateQuestion();
-        this.updateScore(score);
+        if( this.haveMoreQuestions() ) {
+          this.updateScore(score);
+          this.updateQuestion(); // Throwing an error on last question, need to address that
+        } else {
+          console.log('no more questions');
+        }
       });
     }
-
   },
 
   init() {
