@@ -3,24 +3,36 @@
     <head>
         <meta charset="UTF-8">
         <title>Myers Briggs Thing</title>
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./assets/css/app.bundle.css">
     </head>
     <body>
-      <p id="question"></p>
 
-      <ul class="answers" id="answers">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-      </ul>
+      <section class="app">
 
-      <div class="bar">
-        <span id="leftValue"></span>
-        <span id="rightValue"></span>
-      </div>
+        <h1 class="app-title">The Unicorn Test</h1>
+        <p class="app-description" id="question"></p>
 
-      <script src="./bundle.js"></script>
+        <div class="answers-container">
+          <ul class="answers-list" id="answers">
+            <li class="answer" data-score="0">0 <span class="answer-caption -first">Don't agree/no idea</span></li>
+            <li class="answer" data-score="1">2</li>
+            <li class="answer" data-score="2">3</li>
+            <li class="answer" data-score="3">4</li>
+            <li class="answer" data-score="4">5 <span class="answer-caption -last">Strongly agree</span></li>
+          </ul>
+        </div>
+
+        <div class="bar">
+          <div class="bar-title">L</div>
+          <span class="bar-value" id="leftValue"></span>
+        </div>
+        <div class="bar">
+          <div class="bar-title">R</div>
+          <span class="bar-value" id="rightValue"></span>
+        </div>
+
+      </section>
+
+      <script src="./assets/js/app.bundle.js"></script>
     </body>
 </html>
