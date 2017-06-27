@@ -1,0 +1,21 @@
+.bar {
+  margin-top: 2rem;
+}
+
+.bar-title {
+  display: inline-block;
+}
+
+.bar-value {
+  display: inline-block;
+  height: 1rem;
+  width: 10px;
+}
+
+#leftValue {
+  background-color: lemonchiffon;
+}
+
+#rightValue {
+  background-color: skyblue;
+}
