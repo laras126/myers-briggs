@@ -303,7 +303,7 @@ function getScoreElems(ques) {
 }
 
 // Create the Scores object and add it to UI
-function getInitialScores(ques) {
+function createScoreObject(ques) {
   let Scores = {};
 
   ques.forEach( qdata => {
@@ -321,25 +321,25 @@ function getInitialScores(ques) {
   return Scores;
 };
 
-const Scores = getInitialScores(questions); // is const okay here?
+let Scores = createScoreObject(questions); // is const okay here?
 
 // Use event delegation to handle the click event
 document.getElementById('js-answers').addEventListener('click', function(e) {
 
     App.handleQuestionUI();
+
     if(e.target && e.target.nodeName === 'LI') {
 
-      let currentQuestion = questions[App.data.qIndex - 1];
-      let targetScore = currentQuestion.type;
-      let clickVal = +e.target.dataset.score;
+      let currentQuestion = questions[App.data.qIndex - 1],
+          targetScore = currentQuestion.type,
+          clickVal = +e.target.dataset.score,
+          targetEl = document.getElementById(targetScore + 'Value');
 
-      console.log(targetScore);
-
+      // Update scores
       Scores[targetScore] += clickVal;
+      targetEl.innerHTML = Scores[targetScore];
 
-      document.getElementById(targetScore + 'Value').innerHTML = Scores[targetScore];
-
-      // App.updateWidth(targetEl, clickVal);
+      App.updateWidth(targetEl, clickVal);
 
       // document.getElementById(Scores).innerHTML = Scores[targetScore];
       console.log(Scores);
