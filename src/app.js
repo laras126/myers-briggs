@@ -4,12 +4,11 @@ import styles from './css/bar.css';
 import styles from './css/answers.css';
 
 import * as ques from './questions.js';
-// import * as bar from './bar.js';
-
+import * as Score from './Scores.js';
 
 // Questions array import
-const questions = ques.questions;
-
+const questions = ques.questions,
+      Scores = Score.createScoresObject(questions);
 
 // App object
 const App = {
@@ -20,30 +19,6 @@ const App = {
 
   data: {
     qIndex: 0,
-  },
-
-  createScoresObject(ques) {
-    let Scores = {};
-
-    ques.forEach( qdata => {
-      if( !Scores.hasOwnProperty(qdata.type) ) {
-        Scores[qdata.type] = 0;
-
-        // Add to UI
-        let div = document.getElementById('bar-template'),
-            clone = div.cloneNode(true);
-
-        clone.removeAttribute('id');
-        clone.children[0].innerHTML = qdata.type;
-        clone.children[1].innerHTML = Scores[qdata.type];
-        clone.children[1].id = qdata.type + 'Value';
-
-        document.querySelector('.app').appendChild(clone);
-
-      }
-    });
-
-    return Scores;
   },
 
   setQuestionText() {
@@ -95,7 +70,6 @@ const App = {
 
 App.init();
 
-const Scores = App.createScoresObject(questions); // is const okay here?
 
 // Use event delegation to handle the click event
 document.getElementById('js-answers').addEventListener('click', function(e) {

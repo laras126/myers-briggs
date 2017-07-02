@@ -182,18 +182,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_answers_css__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_answers_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_answers_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__questions_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Scores_js__ = __webpack_require__(6);
 
 
 
 
 
 
-// import * as bar from './bar.js';
 
 
 // Questions array import
-const questions = __WEBPACK_IMPORTED_MODULE_3__questions_js__["a" /* questions */];
-
+const questions = __WEBPACK_IMPORTED_MODULE_3__questions_js__["a" /* questions */],
+      Scores = __WEBPACK_IMPORTED_MODULE_4__Scores_js__["a" /* createScoresObject */](questions);
 
 // App object
 const App = {
@@ -204,30 +204,6 @@ const App = {
 
   data: {
     qIndex: 0,
-  },
-
-  createScoresObject(ques) {
-    let Scores = {};
-
-    ques.forEach( qdata => {
-      if( !Scores.hasOwnProperty(qdata.type) ) {
-        Scores[qdata.type] = 0;
-
-        // Add to UI
-        let div = document.getElementById('bar-template'),
-            clone = div.cloneNode(true);
-
-        clone.removeAttribute('id');
-        clone.children[0].innerHTML = qdata.type;
-        clone.children[1].innerHTML = Scores[qdata.type];
-        clone.children[1].id = qdata.type + 'Value';
-
-        document.querySelector('.app').appendChild(clone);
-
-      }
-    });
-
-    return Scores;
   },
 
   setQuestionText() {
@@ -279,7 +255,6 @@ const App = {
 
 App.init();
 
-const Scores = App.createScoresObject(questions); // is const okay here?
 
 // Use event delegation to handle the click event
 document.getElementById('js-answers').addEventListener('click', function(e) {
@@ -303,6 +278,38 @@ document.getElementById('js-answers').addEventListener('click', function(e) {
   }
 
 });
+
+
+/***/ }),
+/* 5 */,
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = createScoresObject;
+function createScoresObject(ques) {
+  let Scores = {};
+
+  ques.forEach( qdata => {
+    if( !Scores.hasOwnProperty(qdata.type) ) {
+      Scores[qdata.type] = 0;
+
+      // Add to UI
+      let div = document.getElementById('bar-template'),
+          clone = div.cloneNode(true);
+
+      clone.removeAttribute('id');
+      clone.children[0].innerHTML = qdata.type;
+      clone.children[1].innerHTML = Scores[qdata.type];
+      clone.children[1].id = qdata.type + 'Value';
+
+      document.querySelector('.app').appendChild(clone);
+
+    }
+  });
+
+  return Scores;
+}
 
 
 /***/ })
