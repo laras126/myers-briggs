@@ -4,30 +4,40 @@ import styles from './css/bar.css';
 import styles from './css/answers.css';
 
 import * as ques from './questions.js';
-import * as bar from './bar.js';
+// import * as bar from './bar.js';
 
 
-// Shortcut :-\
+// Questions array import
 const questions = ques.questions;
 
 
 // App object
-
 const App = {
 
   el: {
-    answers: document.querySelectorAll('#answers > li'),
     question: document.querySelector('#question'),
-    leftScore: document.querySelector('#leftValue'),
-    rightScore: document.querySelector('#rightValue')
+    frontScore: document.querySelector('#frontValue'),
+    backScore: document.querySelector('#backValue'),
+    designScore: document.querySelector('#designValue')
   },
 
   data: {
-    front: 0,
-    back: 0,
-    design: 0,
+    scores: {
+      front: 0,
+      back: 0,
+      design: 0,
+    },
     answer: 0,
     qIndex: 0
+  },
+
+
+  getScoreTypes(ques) {
+    return ques.map( q => q.type );
+  },
+
+  setQuestionText() {
+    this.el.question.innerHTML = questions[this.data.qIndex].text + ' // ' + questions[this.data.qIndex].type;
   },
 
   isLastQuestion() {
@@ -46,12 +56,6 @@ const App = {
     }
   },
 
-  setDefaultValues() {
-    this.el.question.innerHTML   = questions[this.data.qIndex].text + ' // ' + questions[this.data.qIndex].pointsFor;
-    this.el.leftScore.innerHTML  = this.data.left;
-    this.el.rightScore.innerHTML = this.data.right;
-  },
-
   updateWidth(el, val) {
 
     let width = el.offsetWidth,
@@ -59,79 +63,107 @@ const App = {
         newWidth = oldWidth + val*10 + 'px';
 
     el.style.width = newWidth;
-
   },
 
-  updateScore(str) {
-    // var el = $(id),
-    //     width = el[0].offsetWidth,
-    //     right = el[0].style.right,
-    //     oldWidth = parseInt(width, 10),
-    //     oldRight = parseInt(right, 10);
+  updateUI(str) {
 
-    // if($('#answerL')[0].checked) {
-    //   var newWidth = oldWidth + 20 + 'px';
-    //   var newRight = oldRight + 20 + 'px';
-    // } else {
-    //   var newWidth = oldWidth - 20 + 'px';
-    //   var newRight = oldRight - 20 + 'px';
+    // let int = parseInt(str); // Make sure the value is an integer
+    // let currentQuestion = questions[this.data.qIndex];
+
+    // Update progress bars - spaghetti
+    // Should be a way to loop through data.scores and apply each
+
+    // if( currentQuestion.pointsFor === 'front' ) {
+    //   this.data.scores.front += int;
+    //   this.el.frontScore.innerHTML  = this.data.scores.front;
+    //   this.updateWidth(this.el.frontScore, int);
+    // } else if( currentQuestion.pointsFor === 'back' ) {
+    //   this.data.scores.back += int;
+    //   this.el.backScore.innerHTML = this.data.scores.back;
+    //   this.updateWidth(this.el.backScore, int);
+    // } else if( currentQuestion.pointsFor === 'design' ) {
+    //   this.data.scores.design += int;
+    //   this.el.designScore.innerHTML = this.data.scores.design;
+    //   this.updateWidth(this.el.designScore, int);
     // }
-
-    // el[0].style.right = newRight;
-    // el[0].style.width = newWidth;
-
-
-    let int = parseInt(str); // Make sure the value is an integer
-    let currentQuestion = questions[this.data.qIndex];
-
-    // There is a more efficient way to do this
-    if( currentQuestion.pointsFor == 'left' ) {
-      this.data.left += int;
-      this.el.leftScore.innerHTML  = this.data.left;
-      this.updateWidth(this.el.leftScore, int);
-    } else {
-      this.data.right += int;
-      this.el.rightScore.innerHTML = this.data.right;
-      this.updateWidth(this.el.rightScore, int);
-    }
   },
 
-  updateQuestion() {
+  handleQuestionUI() {
+
     this.data.qIndex++;
-    this.el.question.innerHTML = questions[this.data.qIndex].text + ' // ' + questions[this.data.qIndex].pointsFor;
-  },
 
-  applyUpdates(newScore) {
-
-    if( this.hasMoreQuestions() ) {
-      this.updateScore(newScore);
-      this.updateQuestion();
-    }
-
-    if( this.isLastQuestion() ) {
+    if ( this.isLastQuestion() ) {
       this.el.question.innerHTML = "No more questions.";
+      document.querySelector('.answers-list').innerHTML = "Done!";
+    } else {
+      this.setQuestionText();
     }
 
   },
 
   init() {
-    this.setDefaultValues();
-
-    // Add click event to all answers
-    for( let i=0;i<this.el.answers.length;i++ ) {
-      let selectedAnswer = this.el.answers[i];
-      let score = selectedAnswer.dataset.score;
-      // Update the question and score when answer is selected
-      selectedAnswer.addEventListener( 'click', () => {
-        this.applyUpdates(score);
-      });
-
-    }
+    this.setQuestionText();
   }
 }
+
+App.init();
+
+function getScoreElems(ques) {
+  let Elems = {};
+
+  ques.forEach( qdata => {
+    if( !Elems.hasOwnProperty(qdata.type) ) {
+
+    }
+  });
+}
+
+// Create the Scores object and add it to UI
+function getInitialScores(ques) {
+  let Scores = {};
+
+  ques.forEach( qdata => {
+    if( !Scores.hasOwnProperty(qdata.type) ) {
+      Scores[qdata.type] = 0;
+
+      // Add to UI
+      let div = document.createElement('div');
+      div.innerHTML = qdata.type;
+      document.body.appendChild(div);
+
+    }
+  });
+
+  return Scores;
+};
+
+const Scores = getInitialScores(questions); // is const okay here?
+
+// Use event delegation to handle the click event
+document.getElementById('js-answers').addEventListener('click', function(e) {
+
+    App.handleQuestionUI();
+    if(e.target && e.target.nodeName === 'LI') {
+
+      let currentQuestion = questions[App.data.qIndex - 1];
+      let targetScore = currentQuestion.type;
+      let clickVal = +e.target.dataset.score;
+
+      console.log(targetScore);
+
+      Scores[targetScore] += clickVal;
+
+      document.getElementById(targetScore + 'Value').innerHTML = Scores[targetScore];
+
+      // App.updateWidth(targetEl, clickVal);
+
+      // document.getElementById(Scores).innerHTML = Scores[targetScore];
+      console.log(Scores);
+    }
+  });
 
 
 
 // Run app
 
-App.init();
+// App.init();

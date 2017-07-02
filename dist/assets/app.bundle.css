@@ -1,0 +1,83 @@
+
+body {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
+.app {
+  text-align: center;
+  max-width: 720px;
+  margin: auto;
+}
+
+.app-title {
+  color: #BADA55;
+}
+
+.bar {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.bar-title {
+  display: inline-block;
+}
+
+.bar-value {
+  display: inline-block;
+  height: 1rem;
+  width: 10px;
+  border: 1px solid green;
+}
+
+#frontValue {
+  background-color: lemonchiffon;
+}
+
+#backValue {
+  background-color: skyblue;
+}
+
+#designValue {
+  background-color: slategray;
+}
+
+.answers-container {
+  width: 90%;
+  max-width: 20rem;
+  margin: 2rem auto;
+}
+
+.answers-list {
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  position: relative;
+  padding-left: 0;
+}
+
+.answer {
+  cursor: pointer;
+  padding: 1rem;
+  margin-bottom: 0.2rem;
+  background-color: #BADA55;
+  list-style-type: none;
+  border: 1px solid #BADA55;
+}
+
+.answer:hover {
+  border-color: indianred;
+}
+
+.answer-caption {
+  position: absolute;
+  top: -1rem;
+  font-size: 0.8rem;
+}
+
+.answer-caption.-first {
+  left: 0;
+}
+
+.answer-caption.-last {
+  right: 0;
+}

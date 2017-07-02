@@ -1,5 +1,6 @@
 .bar {
   margin-top: 2rem;
+  text-align: left;
 }
 
 .bar-title {
@@ -10,12 +11,17 @@
   display: inline-block;
   height: 1rem;
   width: 10px;
+  border: 1px solid green;
 }
 
-#leftValue {
+#frontValue {
   background-color: lemonchiffon;
 }
 
-#rightValue {
+#backValue {
   background-color: skyblue;
+}
+
+#designValue {
+  background-color: slategray;
 }

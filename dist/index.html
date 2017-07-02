@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Myers Briggs Thing</title>
-        <link rel="stylesheet" href="./assets/css/app.bundle.css">
+        <link rel="stylesheet" href="./assets/app.bundle.css">
     </head>
     <body>
 
@@ -13,26 +13,30 @@
         <p class="app-description" id="question"></p>
 
         <div class="answers-container">
-          <ul class="answers-list" id="answers">
-            <li class="answer" data-score="0">0 <span class="answer-caption -first">Don't agree/no idea</span></li>
-            <li class="answer" data-score="1">2</li>
-            <li class="answer" data-score="2">3</li>
-            <li class="answer" data-score="3">4</li>
-            <li class="answer" data-score="4">5 <span class="answer-caption -last">Strongly agree</span></li>
+          <ul class="answers-list" id="js-answers">
+            <li class="answer" data-score="0">0 <span class="answer-caption -first">Don't agree</span></li>
+            <li class="answer" data-score="1">1</li>
+            <li class="answer" data-score="2">2</li>
+            <li class="answer" data-score="3">3</li>
+            <li class="answer" data-score="4">4 <span class="answer-caption -last">Strongly agree</span></li>
           </ul>
         </div>
 
         <div class="bar">
-          <div class="bar-title">L</div>
-          <span class="bar-value" id="leftValue"></span>
+          <div class="bar-title">F</div>
+          <span class="bar-value" id="frontValue"></span>
         </div>
         <div class="bar">
-          <div class="bar-title">R</div>
-          <span class="bar-value" id="rightValue"></span>
+          <div class="bar-title">B</div>
+          <span class="bar-value" id="backValue"></span>
+        </div>
+        <div class="bar">
+          <div class="bar-title">D</div>
+          <span class="bar-value" id="designValue"></span>
         </div>
 
       </section>
 
-      <script src="./assets/js/app.bundle.js"></script>
+      <script src="./assets/app.bundle.js"></script>
     </body>
 </html>

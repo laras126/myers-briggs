@@ -48,13 +48,13 @@ const config = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-        // use:  ExtractTextPlugin.extract({
-        //   use: [{
-        //     loader: 'css-loader',
-        //     options: { importLoaders: 1 },
-        //   }],
-        // }),
+        // use: ['style-loader', 'css-loader'],
+        use:  ExtractTextPlugin.extract({
+          use: [{
+            loader: 'css-loader',
+            options: { importLoaders: 1 },
+          }],
+        }),
       }
     ],
   },
@@ -74,7 +74,7 @@ const config = {
   // },
 
   output: { // Output everything into this folder
-    path: path.resolve(__dirname, 'dist/assets/js'),
+    path: path.resolve(__dirname, 'dist/assets'),
     filename: '[name].bundle.js',
   },
 
