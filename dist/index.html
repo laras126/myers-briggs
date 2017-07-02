@@ -7,10 +7,10 @@
     </head>
     <body>
 
-      <section class="app">
+      <section id="js-app" class="app">
 
         <h1 class="app-title">The Unicorn Test</h1>
-        <p class="app-description" id="question"></p>
+        <p class="app-description" id="js-question"></p>
 
         <div class="answers-container">
           <ul class="answers-list" id="js-answers">
@@ -22,17 +22,9 @@
           </ul>
         </div>
 
-        <div class="bar">
-          <div class="bar-title">F</div>
-          <span class="bar-value" id="frontValue"></span>
-        </div>
-        <div class="bar">
-          <div class="bar-title">B</div>
-          <span class="bar-value" id="backValue"></span>
-        </div>
-        <div class="bar">
-          <div class="bar-title">D</div>
-          <span class="bar-value" id="designValue"></span>
+        <div class="bar" id="bar-template">
+          <div class="bar-title"></div>
+          <span class="bar-value"></span>
         </div>
 
       </section>

@@ -15,25 +15,35 @@ const questions = ques.questions;
 const App = {
 
   el: {
-    question: document.querySelector('#question'),
-    frontScore: document.querySelector('#frontValue'),
-    backScore: document.querySelector('#backValue'),
-    designScore: document.querySelector('#designValue')
+    question: document.getElementById('js-question'),
   },
 
   data: {
-    scores: {
-      front: 0,
-      back: 0,
-      design: 0,
-    },
-    answer: 0,
-    qIndex: 0
+    qIndex: 0,
   },
 
+  createScoresObject(ques) {
+    let Scores = {};
 
-  getScoreTypes(ques) {
-    return ques.map( q => q.type );
+    ques.forEach( qdata => {
+      if( !Scores.hasOwnProperty(qdata.type) ) {
+        Scores[qdata.type] = 0;
+
+        // Add to UI
+        let div = document.getElementById('bar-template'),
+            clone = div.cloneNode(true);
+
+        clone.removeAttribute('id');
+        clone.children[0].innerHTML = qdata.type;
+        clone.children[1].innerHTML = Scores[qdata.type];
+        clone.children[1].id = qdata.type + 'Value';
+
+        document.querySelector('.app').appendChild(clone);
+
+      }
+    });
+
+    return Scores;
   },
 
   setQuestionText() {
@@ -56,7 +66,7 @@ const App = {
     }
   },
 
-  updateWidth(el, val) {
+  updateBarWidth(el, val) {
 
     let width = el.offsetWidth,
         oldWidth = parseInt(width, 10),
@@ -65,30 +75,7 @@ const App = {
     el.style.width = newWidth;
   },
 
-  updateUI(str) {
-
-    // let int = parseInt(str); // Make sure the value is an integer
-    // let currentQuestion = questions[this.data.qIndex];
-
-    // Update progress bars - spaghetti
-    // Should be a way to loop through data.scores and apply each
-
-    // if( currentQuestion.pointsFor === 'front' ) {
-    //   this.data.scores.front += int;
-    //   this.el.frontScore.innerHTML  = this.data.scores.front;
-    //   this.updateWidth(this.el.frontScore, int);
-    // } else if( currentQuestion.pointsFor === 'back' ) {
-    //   this.data.scores.back += int;
-    //   this.el.backScore.innerHTML = this.data.scores.back;
-    //   this.updateWidth(this.el.backScore, int);
-    // } else if( currentQuestion.pointsFor === 'design' ) {
-    //   this.data.scores.design += int;
-    //   this.el.designScore.innerHTML = this.data.scores.design;
-    //   this.updateWidth(this.el.designScore, int);
-    // }
-  },
-
-  handleQuestionUI() {
+  updateQuestion() {
 
     this.data.qIndex++;
 
@@ -108,62 +95,27 @@ const App = {
 
 App.init();
 
-function getScoreElems(ques) {
-  let Elems = {};
-
-  ques.forEach( qdata => {
-    if( !Elems.hasOwnProperty(qdata.type) ) {
-
-    }
-  });
-}
-
-// Create the Scores object and add it to UI
-function createScoreObject(ques) {
-  let Scores = {};
-
-  ques.forEach( qdata => {
-    if( !Scores.hasOwnProperty(qdata.type) ) {
-      Scores[qdata.type] = 0;
-
-      // Add to UI
-      let div = document.createElement('div');
-      div.innerHTML = qdata.type;
-      document.body.appendChild(div);
-
-    }
-  });
-
-  return Scores;
-};
-
-let Scores = createScoreObject(questions); // is const okay here?
+const Scores = App.createScoresObject(questions); // is const okay here?
 
 // Use event delegation to handle the click event
 document.getElementById('js-answers').addEventListener('click', function(e) {
 
-    App.handleQuestionUI();
+  App.updateQuestion();
 
-    if(e.target && e.target.nodeName === 'LI') {
+  if(e.target && e.target.nodeName === 'LI') {
 
-      let currentQuestion = questions[App.data.qIndex - 1],
-          targetScore = currentQuestion.type,
-          clickVal = +e.target.dataset.score,
-          targetEl = document.getElementById(targetScore + 'Value');
+    let currentQuestion = questions[App.data.qIndex - 1],
+        targetScore = currentQuestion.type,
+        clickVal = +e.target.dataset.score,
+        targetEl = document.getElementById(targetScore + 'Value');
 
-      // Update scores
-      Scores[targetScore] += clickVal;
-      targetEl.innerHTML = Scores[targetScore];
+    // Update scores
+    Scores[targetScore] += clickVal;
+    targetEl.innerHTML = Scores[targetScore];
 
-      App.updateWidth(targetEl, clickVal);
+    App.updateBarWidth(targetEl, clickVal);
 
-      // document.getElementById(Scores).innerHTML = Scores[targetScore];
-      console.log(Scores);
-    }
-  });
+    console.log(Scores);
+  }
 
-
-
-// Run app
-
-// App.init();
+});

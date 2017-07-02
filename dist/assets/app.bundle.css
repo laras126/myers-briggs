@@ -13,6 +13,10 @@ body {
   color: #BADA55;
 }
 
+#bar-template {
+  display: none;
+}
+
 .bar {
   margin-top: 2rem;
   text-align: left;
