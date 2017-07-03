@@ -15,27 +15,22 @@
 
 .answer {
   cursor: pointer;
-  padding: 1rem;
+  padding: 1rem 2rem;
   margin-bottom: 0.2rem;
-  background-color: #BADA55;
+  background-color: mediumaquamarine;
   list-style-type: none;
-  border: 1px solid #BADA55;
+  border: 1px solid mediumaquamarine;
 }
 
 .answer:hover {
-  border-color: indianred;
-}
-
-.answer-caption {
-  position: absolute;
-  top: -1rem;
-  font-size: 0.8rem;
+  border-color: darkcyan;
+  background-color: paleturquoise;
 }
 
 .answer-caption.-first {
-  left: 0;
+  left: -2.5rem;
 }
 
 .answer-caption.-last {
-  right: 0;
+  right: -2.5rem;
 }

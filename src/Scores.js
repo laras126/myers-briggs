@@ -14,7 +14,7 @@ export function createScoresObject(ques) {
       clone.children[1].innerHTML = Scores[qdata.type];
       clone.children[1].id = qdata.type + 'Value';
 
-      document.querySelector('.app').appendChild(clone);
+      document.querySelector('#js-bar-container').appendChild(clone);
 
     }
   });

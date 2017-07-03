@@ -4,28 +4,37 @@
         <meta charset="UTF-8">
         <title>Myers Briggs For Web People</title>
         <link rel="stylesheet" href="./assets/app.bundle.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
 
       <section id="js-app" class="app">
 
-        <h1 class="app-title">Myers Briggs for Web People</h1>
-        <p>a.k.a. The Unicorn Test</p>
-        <p class="app-description" id="js-question"></p>
+        <header class="app-header">
+          <h1 class="app-title">Myers Briggs for Web People</h1>
+          <p class="app-tagline">a.k.a. The Unicorn Test</p>
+        </header>
+
+        <div class="question">
+          <p class="question-text" id="js-question"></p>
+          <p class="caption question-type" id="js-question-type"></p>
+        </div>
 
         <div class="answers-container">
           <ul class="answers-list" id="js-answers">
-            <li class="answer" data-score="0">0 <span class="answer-caption -first">Don't agree</span></li>
+            <li class="answer" data-score="0">0 <span class="caption answer-caption -first">Strongly Disagree</span></li>
             <li class="answer" data-score="1">1</li>
             <li class="answer" data-score="2">2</li>
             <li class="answer" data-score="3">3</li>
-            <li class="answer" data-score="4">4 <span class="answer-caption -last">Strongly agree</span></li>
+            <li class="answer" data-score="4">4 <span class="caption answer-caption -last">Strongly Agree</span></li>
           </ul>
         </div>
 
-        <div class="bar" id="bar-template">
-          <div class="bar-title"></div>
-          <span class="bar-value"></span>
+        <div class="bar-container" id="js-bar-container">
+          <div class="bar" id="bar-template">
+            <div class="bar-title caption"></div>
+            <span class="bar-value"></span>
+          </div>
         </div>
 
       </section>

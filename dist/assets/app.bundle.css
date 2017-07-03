@@ -1,4 +1,8 @@
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
@@ -9,17 +13,59 @@ body {
   margin: auto;
 }
 
-.app-title {
-  color: #BADA55;
+.app-header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
+.app-title {
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+.app-tagline {
+  font-style: italic;
+  border-bottom: 1px solid #EEE;
+  padding-bottom: 1rem;
+}
+
+.question {
+  position: relative;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.question-type {
+  text-align: center;
+  width: 100%;
+  color: #AAA;
+}
+
+.caption {
+  position: absolute;
+  top: -1rem;
+  font-size: 0.8rem;
+}
 #bar-template {
   display: none;
+}
+
+.bar-container {
+  padding-top: 1rem;
+  width: 80%;
+  margin: auto;
 }
 
 .bar {
   margin-top: 2rem;
   text-align: left;
+  position: relative;
+  background-color: #EEE;
+  height: 2rem;
 }
 
 .bar-title {
@@ -27,10 +73,12 @@ body {
 }
 
 .bar-value {
-  display: inline-block;
-  height: 1rem;
-  width: 10px;
-  border: 1px solid green;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 15px;
+  padding-right: 3px;
 }
 
 #frontValue {
@@ -65,27 +113,22 @@ body {
 
 .answer {
   cursor: pointer;
-  padding: 1rem;
+  padding: 1rem 2rem;
   margin-bottom: 0.2rem;
-  background-color: #BADA55;
+  background-color: mediumaquamarine;
   list-style-type: none;
-  border: 1px solid #BADA55;
+  border: 1px solid mediumaquamarine;
 }
 
 .answer:hover {
-  border-color: indianred;
-}
-
-.answer-caption {
-  position: absolute;
-  top: -1rem;
-  font-size: 0.8rem;
+  border-color: darkcyan;
+  background-color: paleturquoise;
 }
 
 .answer-caption.-first {
-  left: 0;
+  left: -2.5rem;
 }
 
 .answer-caption.-last {
-  right: 0;
+  right: -2.5rem;
 }

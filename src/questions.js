@@ -7,15 +7,11 @@ export let questions = [
     type: 'back',
   },
   {
-    text: 'There is something gravely wrong with this: &lt;IMG SRC=\"\">.',
-    type: 'front',
-  },
-  {
     text: 'I use Sketch often.',
     type: 'design',
   },
   {
-    text: 'I can write a regex easily.',
+    text: 'I can write a regex.',
     type: 'back',
   },
   {
@@ -23,7 +19,7 @@ export let questions = [
     type: 'js',
   },
   {
-    text: 'I know the difference between call() and apply().',
+    text: 'I know when to use call() vs. apply().',
     type: 'js',
   },
   {

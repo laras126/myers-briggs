@@ -2,9 +2,18 @@
   display: none;
 }
 
+.bar-container {
+  padding-top: 1rem;
+  width: 80%;
+  margin: auto;
+}
+
 .bar {
   margin-top: 2rem;
   text-align: left;
+  position: relative;
+  background-color: #EEE;
+  height: 2rem;
 }
 
 .bar-title {
@@ -12,10 +21,12 @@
 }
 
 .bar-value {
-  display: inline-block;
-  height: 1rem;
-  width: 10px;
-  border: 1px solid green;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 15px;
+  padding-right: 3px;
 }
 
 #frontValue {

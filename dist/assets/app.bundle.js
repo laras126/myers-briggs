@@ -99,15 +99,11 @@ let questions = [
     type: 'back',
   },
   {
-    text: 'There is something gravely wrong with this: &lt;IMG SRC=\"\">.',
-    type: 'front',
-  },
-  {
     text: 'I use Sketch often.',
     type: 'design',
   },
   {
-    text: 'I can write a regex easily.',
+    text: 'I can write a regex.',
     type: 'back',
   },
   {
@@ -115,7 +111,7 @@ let questions = [
     type: 'js',
   },
   {
-    text: 'I know the difference between call() and apply().',
+    text: 'I know when to use call() vs. apply().',
     type: 'js',
   },
   {
@@ -200,6 +196,7 @@ const App = {
 
   el: {
     question: document.getElementById('js-question'),
+    questionType: document.getElementById('js-question-type'),
   },
 
   data: {
@@ -207,7 +204,9 @@ const App = {
   },
 
   setQuestionText() {
-    this.el.question.innerHTML = questions[this.data.qIndex].text + ' // ' + questions[this.data.qIndex].type;
+    this.el.question.innerHTML = questions[this.data.qIndex].text
+    this.el.questionType.innerHTML = questions[this.data.qIndex].type;
+
   },
 
   isLastQuestion() {
@@ -303,7 +302,7 @@ function createScoresObject(ques) {
       clone.children[1].innerHTML = Scores[qdata.type];
       clone.children[1].id = qdata.type + 'Value';
 
-      document.querySelector('.app').appendChild(clone);
+      document.querySelector('#js-bar-container').appendChild(clone);
 
     }
   });

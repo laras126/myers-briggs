@@ -15,6 +15,7 @@ const App = {
 
   el: {
     question: document.getElementById('js-question'),
+    questionType: document.getElementById('js-question-type'),
   },
 
   data: {
@@ -22,7 +23,9 @@ const App = {
   },
 
   setQuestionText() {
-    this.el.question.innerHTML = questions[this.data.qIndex].text + ' // ' + questions[this.data.qIndex].type;
+    this.el.question.innerHTML = questions[this.data.qIndex].text
+    this.el.questionType.innerHTML = questions[this.data.qIndex].type;
+
   },
 
   isLastQuestion() {

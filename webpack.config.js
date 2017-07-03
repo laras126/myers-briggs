@@ -4,28 +4,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
 const config = {
-  context: path.resolve(__dirname, 'src'), // Start from this folder
-  entry: { // Look in these files
+  context: path.resolve(__dirname, 'src'),
+
+  entry: {
     app: './app.js',
   },
-  watch: true,
 
-  // module: {
-  //   loaders: [
-  //     {
-  //       test: /\.css$/,
-  //       use: ExtractTextPlugin.extract({
-  //         use: [
-  //           {
-  //             loader: 'css-loader',
-  //             options: { importLoaders: 1 },
-  //           },
-  //           'postcss-loader',
-  //         ],
-  //       }),
-  //     },
-  //   ],
-  // },
+  watch: true,
 
   module: {
     rules: [
@@ -48,7 +33,6 @@ const config = {
     rules: [
       {
         test: /\.css$/,
-        // use: ['style-loader', 'css-loader'],
         use:  ExtractTextPlugin.extract({
           use: [{
             loader: 'css-loader',
@@ -59,21 +43,7 @@ const config = {
     ],
   },
 
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.(sass|scss)$/,
-  //       use: [
-  //         'style-loader',
-  //         'css-loader',
-  //         'sass-loader',
-  //       ]
-  //     }
-  //     // …
-  //   ],
-  // },
-
-  output: { // Output everything into this folder
+  output: {
     path: path.resolve(__dirname, 'dist/assets'),
     filename: '[name].bundle.js',
   },

@@ -1,4 +1,8 @@
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
@@ -9,7 +13,40 @@ body {
   margin: auto;
 }
 
-.app-title {
-  color: #BADA55;
+.app-header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
+.app-title {
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+.app-tagline {
+  font-style: italic;
+  border-bottom: 1px solid #EEE;
+  padding-bottom: 1rem;
+}
+
+.question {
+  position: relative;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.question-type {
+  text-align: center;
+  width: 100%;
+  color: #AAA;
+}
+
+.caption {
+  position: absolute;
+  top: -1rem;
+  font-size: 0.8rem;
+}
