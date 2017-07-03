@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -86,6 +86,37 @@
 
 /***/ }),
 /* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = createScoresObject;
+function createScoresObject(ques) {
+  let Scores = {};
+
+  ques.forEach( qdata => {
+    if( !Scores.hasOwnProperty(qdata.type) ) {
+      Scores[qdata.type] = 0;
+
+      // Add to UI
+      let div = document.getElementById('bar-template'),
+          clone = div.cloneNode(true);
+
+      clone.removeAttribute('id');
+      clone.children[0].innerHTML = qdata.type;
+      clone.children[1].innerHTML = Scores[qdata.type];
+      clone.children[1].id = qdata.type + 'Value';
+
+      document.querySelector('#js-bar-container').appendChild(clone);
+
+    }
+  });
+
+  return Scores;
+}
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -166,7 +197,7 @@ let questions = [
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -177,8 +208,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_bar_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_bar_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_answers_css__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_answers_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_answers_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__questions_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Scores_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__questions_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Scores_js__ = __webpack_require__(3);
 
 
 
@@ -277,38 +308,6 @@ document.getElementById('js-answers').addEventListener('click', function(e) {
   }
 
 });
-
-
-/***/ }),
-/* 5 */,
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = createScoresObject;
-function createScoresObject(ques) {
-  let Scores = {};
-
-  ques.forEach( qdata => {
-    if( !Scores.hasOwnProperty(qdata.type) ) {
-      Scores[qdata.type] = 0;
-
-      // Add to UI
-      let div = document.getElementById('bar-template'),
-          clone = div.cloneNode(true);
-
-      clone.removeAttribute('id');
-      clone.children[0].innerHTML = qdata.type;
-      clone.children[1].innerHTML = Scores[qdata.type];
-      clone.children[1].id = qdata.type + 'Value';
-
-      document.querySelector('#js-bar-container').appendChild(clone);
-
-    }
-  });
-
-  return Scores;
-}
 
 
 /***/ })
