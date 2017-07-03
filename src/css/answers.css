@@ -17,20 +17,20 @@
   cursor: pointer;
   padding: 1rem 2rem;
   margin-bottom: 0.2rem;
-  background-color: mediumaquamarine;
+  background-color: var(--color-accent-med);
   list-style-type: none;
-  border: 1px solid mediumaquamarine;
+  border: 1px solid var(--color-accent-med);
 }
 
 .answer:hover {
-  border-color: darkcyan;
-  background-color: paleturquoise;
+  border-color: var(--color-accent-dark);
+  background-color: var(--color-accent-light);
 }
 
 .answer-caption.-first {
-  left: -2.5rem;
+  left: -3rem;
 }
 
 .answer-caption.-last {
-  right: -2.5rem;
+  right: -var(--size-h3);
 }

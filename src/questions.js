@@ -7,7 +7,7 @@ export let questions = [
     type: 'back',
   },
   {
-    text: 'I use Sketch often.',
+    text: 'I know design tools like Sketch, Adobe Illustrator, or Photoshop well.',
     type: 'design',
   },
   {
@@ -23,7 +23,7 @@ export let questions = [
     type: 'js',
   },
   {
-    text: 'I understand how the browser renders a webpage.',
+    text: 'I understand how the browser paints a webpage.',
     type: 'back',
   },
   {
@@ -47,12 +47,24 @@ export let questions = [
     type: 'design',
   },
   {
-    text: 'Jeffrey Zeldman, Eric Meyer, and Chris Coyier are heroes.',
+    text: 'Jeffrey Zeldman, Eric Meyer, and Harry Roberts are heroes.',
     type: 'front',
   },
   {
     text: 'Bad kerning bothers me.',
     type: 'design',
+  },
+  {
+    text: 'I know the difference between the Quick Sort and Merge Sort algorithms.',
+    type: 'back',
+  },
+  {
+    text: 'I am comfortable referring to a stack trace when debugging my code.',
+    type: 'back',
+  },
+  {
+    text: 'I gain meaningful information from CSS-Tricks.',
+    type: 'front',
   },
   {
     text: 'I can style a satisfying-to-click button.',

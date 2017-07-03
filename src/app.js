@@ -1,7 +1,5 @@
 
 import styles from './css/app.css';
-import styles from './css/bar.css';
-import styles from './css/answers.css';
 
 import * as ques from './questions.js';
 import * as Score from './Scores.js';
@@ -49,8 +47,9 @@ const App = {
     let width = el.offsetWidth,
         oldWidth = parseInt(width, 10),
         newWidth = oldWidth + val*10 + 'px';
-
-    el.style.width = newWidth;
+    if( val !== 0 ) {
+      el.style.width = newWidth;
+    }
   },
 
   updateQuestion() {

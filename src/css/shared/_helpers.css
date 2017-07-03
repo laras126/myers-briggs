@@ -1,0 +1,6 @@
+
+.caption {
+  position: absolute;
+  top: -var(--size-base);
+  font-size: var(--size-sml);
+}

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -74,18 +74,6 @@
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -116,7 +104,7 @@ function createScoresObject(ques) {
 
 
 /***/ }),
-/* 4 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -130,7 +118,7 @@ let questions = [
     type: 'back',
   },
   {
-    text: 'I use Sketch often.',
+    text: 'I know design tools like Sketch, Adobe Illustrator, or Photoshop well.',
     type: 'design',
   },
   {
@@ -146,7 +134,7 @@ let questions = [
     type: 'js',
   },
   {
-    text: 'I understand how the browser renders a webpage.',
+    text: 'I understand how the browser paints a webpage.',
     type: 'back',
   },
   {
@@ -170,12 +158,24 @@ let questions = [
     type: 'design',
   },
   {
-    text: 'Jeffrey Zeldman, Eric Meyer, and Chris Coyier are heroes.',
+    text: 'Jeffrey Zeldman, Eric Meyer, and Harry Roberts are heroes.',
     type: 'front',
   },
   {
     text: 'Bad kerning bothers me.',
     type: 'design',
+  },
+  {
+    text: 'I know the difference between the Quick Sort and Merge Sort algorithms.',
+    type: 'back',
+  },
+  {
+    text: 'I am comfortable referring to a stack trace when debugging my code.',
+    type: 'back',
+  },
+  {
+    text: 'I gain meaningful information from CSS-Tricks.',
+    type: 'front',
   },
   {
     text: 'I can style a satisfying-to-click button.',
@@ -197,21 +197,15 @@ let questions = [
 
 
 /***/ }),
-/* 5 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_app_css__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_app_css__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_app_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_app_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_bar_css__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_bar_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_bar_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_answers_css__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_answers_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_answers_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__questions_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Scores_js__ = __webpack_require__(3);
-
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__questions_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Scores_js__ = __webpack_require__(1);
 
 
 
@@ -219,8 +213,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 // Questions array import
-const questions = __WEBPACK_IMPORTED_MODULE_3__questions_js__["a" /* questions */],
-      Scores = __WEBPACK_IMPORTED_MODULE_4__Scores_js__["a" /* createScoresObject */](questions);
+const questions = __WEBPACK_IMPORTED_MODULE_1__questions_js__["a" /* questions */],
+      Scores = __WEBPACK_IMPORTED_MODULE_2__Scores_js__["a" /* createScoresObject */](questions);
 
 // App object
 const App = {
@@ -261,8 +255,9 @@ const App = {
     let width = el.offsetWidth,
         oldWidth = parseInt(width, 10),
         newWidth = oldWidth + val*10 + 'px';
-
-    el.style.width = newWidth;
+    if( val !== 0 ) {
+      el.style.width = newWidth;
+    }
   },
 
   updateQuestion() {

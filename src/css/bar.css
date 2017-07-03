@@ -29,18 +29,19 @@
   padding-right: 3px;
 }
 
-#frontValue {
-  background-color: lemonchiffon;
-}
 
 #backValue {
-  background-color: skyblue;
+  background-color: var(--color-back);
 }
 
 #designValue {
-  background-color: slategray;
+  background-color: var(--color-design);
 }
 
 #jsValue {
-  background-color: peachpuff;
+  background-color: var(--color-js);
+}
+
+#frontValue {
+  background-color: var(--color-front);
 }
