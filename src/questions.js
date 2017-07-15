@@ -1,38 +1,54 @@
 
 // Static questions data
 
-export let questions = [
+export const questions = [
   {
     text: 'I can shard a database.',
     type: 'back',
+    difficulty: 4,
+    importance: 3,
   },
   {
     text: 'I know design tools like Sketch, Adobe Illustrator, or Photoshop well.',
     type: 'design',
+    difficulty: 2,
+    importance: 4,
   },
   {
     text: 'I can write a regex.',
     type: 'back',
+    difficulty: 4,
+    importance: 4,
   },
   {
     text: 'I know the difference between == and ===.',
     type: 'js',
+    difficulty: 2,
+    importance: 5,
   },
   {
     text: 'I know when to use call() vs. apply().',
     type: 'js',
+    difficulty: 2,
+    importance: 4,
   },
   {
     text: 'I understand how the browser paints a webpage.',
     type: 'back',
+    difficulty: 3,
+    importance: 5,
   },
   {
     text: 'I am comfortable recommending server-side caching techniques.',
     type: 'back',
+    difficulty: 3,
+    importance: 5,
   },
   {
     text: 'I enjoy designing page layouts.',
     type: 'design',
+    difficulty: 2,
+    importance: 4,
   },
   {
     text: 'I enjoy architecting a stylesheet.',
