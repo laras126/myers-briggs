@@ -1,3 +1,4 @@
+import _ from 'lodash';
 
 import styles from './css/app.css';
 
@@ -8,26 +9,21 @@ import * as Score from './Scores.js';
 const questions = ques.questions,
       Scores = Score.createScoresObject(questions);
 
+let currentQuestionIndex = 0;
+
+
 // App object
 const App = {
 
-  el: {
-    question: document.getElementById('js-question'),
-    questionType: document.getElementById('js-question-type'),
-  },
-
-  data: {
-    qIndex: 0,
-  },
 
   setQuestionText() {
-    this.el.question.innerHTML = questions[this.data.qIndex].text
-    this.el.questionType.innerHTML = questions[this.data.qIndex].type;
+    document.querySelector('#js-question').innerHTML = questions[currentQuestionIndex].text;
+    document.querySelector('#js-question-type').innerHTML = questions[currentQuestionIndex].type;
 
   },
 
   isLastQuestion() {
-    if( this.data.qIndex == questions.length - 1 ) {
+    if( currentQuestionIndex == questions.length - 1 ) {
       return true;
     } else {
       return false;
@@ -35,9 +31,9 @@ const App = {
   },
 
   hasMoreQuestions() {
-    if( this.data.qIndex <= questions.length ) {
+    if( currentQuestionIndex <= questions.length ) {
       return true;
-    } else if( this.data.qIndex == questions.length ) {
+    } else if( currentQuestionIndex == questions.length ) {
       return false;
     }
   },
@@ -54,10 +50,10 @@ const App = {
 
   updateQuestion() {
 
-    this.data.qIndex++;
+    currentQuestionIndex++;
 
     if ( this.isLastQuestion() ) {
-      this.el.question.innerHTML = "No more questions.";
+      document.querySelector('#js-question').innerHTML = "No more questions.";
       document.querySelector('.answers-list').innerHTML = "Done!";
     } else {
       this.setQuestionText();
@@ -80,7 +76,7 @@ document.getElementById('js-answers').addEventListener('click', function(e) {
 
   if(e.target && e.target.nodeName === 'LI') {
 
-    let currentQuestion = questions[App.data.qIndex - 1],
+    let currentQuestion = questions[currentQuestionIndex - 1],
         targetScore = currentQuestion.type,
         clickVal = +e.target.dataset.score,
         targetEl = document.getElementById(targetScore + 'Value');
