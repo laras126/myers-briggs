@@ -6,88 +6,72 @@ import * as ques from './questions.js';
 import * as Score from './Scores.js';
 
 // Questions array import
-const questions = ques.questions,
-      Scores = Score.createScoresObject(questions);
+const questions = ques.questions;
 
-let currentQuestionIndex = 0;
+let Scores = Score.createScoresObject(questions),
+    currentQuestionIndex = 0,
+    currentQuestionType,
+    currentQuestionText;
 
+let isLastQuestion = () => {
+  if( currentQuestionIndex == questions.length - 1 ) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
-// App object
-const App = {
+function setCurrentQuestionText() {
+  currentQuestionType = questions[currentQuestionIndex].type,
+  currentQuestionText = questions[currentQuestionIndex].text;
 
+  document.querySelector('#js-question').innerHTML = currentQuestionText;
+  document.querySelector('#js-question-type').innerHTML = currentQuestionType;
+}
 
-  setQuestionText() {
-    document.querySelector('#js-question').innerHTML = questions[currentQuestionIndex].text;
-    document.querySelector('#js-question-type').innerHTML = questions[currentQuestionIndex].type;
+function setEndOfQuizText() {
+  document.querySelector('#js-question').innerHTML = "No more questions.";
+  document.querySelector('.answers-list').innerHTML = "Done!";
+}
 
-  },
-
-  isLastQuestion() {
-    if( currentQuestionIndex == questions.length - 1 ) {
-      return true;
-    } else {
-      return false;
-    }
-  },
-
-  hasMoreQuestions() {
-    if( currentQuestionIndex <= questions.length ) {
-      return true;
-    } else if( currentQuestionIndex == questions.length ) {
-      return false;
-    }
-  },
-
-  updateBarWidth(el, val) {
-
-    let width = el.offsetWidth,
-        oldWidth = parseInt(width, 10),
-        newWidth = oldWidth + val*10 + 'px';
-    if( val !== 0 ) {
-      el.style.width = newWidth;
-    }
-  },
-
-  updateQuestion() {
-
-    currentQuestionIndex++;
-
-    if ( this.isLastQuestion() ) {
-      document.querySelector('#js-question').innerHTML = "No more questions.";
-      document.querySelector('.answers-list').innerHTML = "Done!";
-    } else {
-      this.setQuestionText();
-    }
-
-  },
-
-  init() {
-    this.setQuestionText();
+function updateBarWidth(el, val) {
+  let width = el.offsetWidth,
+      oldWidth = parseInt(width, 10),
+      newWidth = oldWidth + val*10 + 'px';
+  if( val !== 0 ) {
+    el.style.width = newWidth;
   }
 }
 
-App.init();
+function updateQuestion() {
+  currentQuestionIndex++;
+  if (isLastQuestion()) {
+    setEndOfQuizText();
+  } else {
+    setCurrentQuestionText();
+  }
+}
 
+setCurrentQuestionText();
 
 // Use event delegation to handle the click event
 document.getElementById('js-answers').addEventListener('click', function(e) {
 
-  App.updateQuestion();
+  updateQuestion();
 
   if(e.target && e.target.nodeName === 'LI') {
 
     let currentQuestion = questions[currentQuestionIndex - 1],
-        targetScore = currentQuestion.type,
-        clickVal = +e.target.dataset.score,
-        targetEl = document.getElementById(targetScore + 'Value');
+        targetType = currentQuestion.type,
+        clickedScore = +e.target.dataset.score,
+        targetEl = document.getElementById(targetType + 'Value');
 
     // Update scores
-    Scores[targetScore] += clickVal;
+    Scores[targetType] += clickedScore;
     targetEl.innerHTML = Scores[targetScore];
 
-    App.updateBarWidth(targetEl, clickVal);
+    updateBarWidth(targetEl, clickVal);
 
-    console.log(Scores);
   }
 
 });

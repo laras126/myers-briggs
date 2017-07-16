@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -74,254 +74,6 @@
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = createScoresObject;
-function createScoresObject(ques) {
-  let Scores = {};
-
-  ques.forEach( qdata => {
-    if( !Scores.hasOwnProperty(qdata.type) ) {
-      Scores[qdata.type] = 0;
-
-      // Add to UI
-      let div = document.getElementById('bar-template'),
-          clone = div.cloneNode(true);
-
-      clone.removeAttribute('id');
-      clone.children[0].innerHTML = qdata.type;
-      clone.children[1].innerHTML = Scores[qdata.type];
-      clone.children[1].id = qdata.type + 'Value';
-
-      document.querySelector('#js-bar-container').appendChild(clone);
-    }
-  });
-
-  return Scores;
-}
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// Static questions data
-
-const questions = [
-  {
-    text: 'I can shard a database.',
-    type: 'back',
-    difficulty: 4,
-    importance: 3,
-  },
-  {
-    text: 'I know design tools like Sketch, Adobe Illustrator, or Photoshop well.',
-    type: 'design',
-    difficulty: 2,
-    importance: 4,
-  },
-  {
-    text: 'I can write a regex.',
-    type: 'back',
-    difficulty: 4,
-    importance: 4,
-  },
-  {
-    text: 'I know the difference between == and ===.',
-    type: 'js',
-    difficulty: 2,
-    importance: 5,
-  },
-  {
-    text: 'I know when to use call() vs. apply().',
-    type: 'js',
-    difficulty: 2,
-    importance: 4,
-  },
-  {
-    text: 'I understand how the browser paints a webpage.',
-    type: 'back',
-    difficulty: 3,
-    importance: 5,
-  },
-  {
-    text: 'I am comfortable recommending server-side caching techniques.',
-    type: 'back',
-    difficulty: 3,
-    importance: 5,
-  },
-  {
-    text: 'I enjoy designing page layouts.',
-    type: 'design',
-    difficulty: 2,
-    importance: 4,
-  },
-  {
-    text: 'I enjoy architecting a stylesheet.',
-    type: 'front',
-  },
-  {
-    text: 'Alan Turing, Grace Hopper, and Claude Shannon are heroes.',
-    type: 'back',
-  },
-  {
-    text: 'Paula Scher, Dieter Rams, and Stefan Sagmeister are heroes.',
-    type: 'design',
-  },
-  {
-    text: 'Jeffrey Zeldman, Eric Meyer, and Harry Roberts are heroes.',
-    type: 'front',
-  },
-  {
-    text: 'Bad kerning bothers me.',
-    type: 'design',
-  },
-  {
-    text: 'I know the difference between the Quick Sort and Merge Sort algorithms.',
-    type: 'back',
-  },
-  {
-    text: 'I am comfortable referring to a stack trace when debugging my code.',
-    type: 'back',
-  },
-  {
-    text: 'I gain meaningful information from CSS-Tricks.',
-    type: 'front',
-  },
-  {
-    text: 'I can style a satisfying-to-click button.',
-    type: 'front',
-  },
-  {
-    text: 'This bothers me: &lt;IMG SRC=\"\">.',
-    type: 'front',
-  },
-  {
-    text: 'I enjoy debugging CSS.',
-    type: 'front',
-  },
-  {
-    text: 'I know how to identify garbage collection using dev tools.',
-    type: 'js',
-  },
-];
-/* harmony export (immutable) */ __webpack_exports__["a"] = questions;
-
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_app_css__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_app_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_app_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__questions_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Scores_js__ = __webpack_require__(1);
-
-
-
-
-
-
-
-// Questions array import
-const questions = __WEBPACK_IMPORTED_MODULE_2__questions_js__["a" /* questions */],
-      Scores = __WEBPACK_IMPORTED_MODULE_3__Scores_js__["a" /* createScoresObject */](questions);
-
-let currentQuestionIndex = 0;
-
-
-// App object
-const App = {
-
-
-  setQuestionText() {
-    document.querySelector('#js-question').innerHTML = questions[currentQuestionIndex].text;
-    document.querySelector('#js-question-type').innerHTML = questions[currentQuestionIndex].type;
-
-  },
-
-  isLastQuestion() {
-    if( currentQuestionIndex == questions.length - 1 ) {
-      return true;
-    } else {
-      return false;
-    }
-  },
-
-  hasMoreQuestions() {
-    if( currentQuestionIndex <= questions.length ) {
-      return true;
-    } else if( currentQuestionIndex == questions.length ) {
-      return false;
-    }
-  },
-
-  updateBarWidth(el, val) {
-
-    let width = el.offsetWidth,
-        oldWidth = parseInt(width, 10),
-        newWidth = oldWidth + val*10 + 'px';
-    if( val !== 0 ) {
-      el.style.width = newWidth;
-    }
-  },
-
-  updateQuestion() {
-
-    currentQuestionIndex++;
-
-    if ( this.isLastQuestion() ) {
-      document.querySelector('#js-question').innerHTML = "No more questions.";
-      document.querySelector('.answers-list').innerHTML = "Done!";
-    } else {
-      this.setQuestionText();
-    }
-
-  },
-
-  init() {
-    this.setQuestionText();
-  }
-}
-
-App.init();
-
-
-// Use event delegation to handle the click event
-document.getElementById('js-answers').addEventListener('click', function(e) {
-
-  App.updateQuestion();
-
-  if(e.target && e.target.nodeName === 'LI') {
-
-    let currentQuestion = questions[currentQuestionIndex - 1],
-        targetScore = currentQuestion.type,
-        clickVal = +e.target.dataset.score,
-        targetEl = document.getElementById(targetScore + 'Value');
-
-    // Update scores
-    Scores[targetScore] += clickVal;
-    targetEl.innerHTML = Scores[targetScore];
-
-    App.updateBarWidth(targetEl, clickVal);
-
-    console.log(Scores);
-  }
-
-});
-
-
-/***/ }),
-/* 4 */,
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -17410,10 +17162,150 @@ document.getElementById('js-answers').addEventListener('click', function(e) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(7)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)(module)))
 
 /***/ }),
-/* 6 */
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = createScoresObject;
+function createScoresObject(ques) {
+  let Scores = {};
+
+  ques.forEach( qdata => {
+    if( !Scores.hasOwnProperty(qdata.type) ) {
+      Scores[qdata.type] = 0;
+
+      // Add to UI
+      let div = document.getElementById('bar-template'),
+          clone = div.cloneNode(true);
+
+      clone.removeAttribute('id');
+      clone.children[0].innerHTML = qdata.type;
+      clone.children[1].innerHTML = Scores[qdata.type];
+      clone.children[1].id = qdata.type + 'Value';
+
+      document.querySelector('#js-bar-container').appendChild(clone);
+    }
+  });
+
+  return Scores;
+}
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// Static questions data
+
+const questions = [
+  {
+    text: 'I can shard a database.',
+    type: 'back',
+    difficulty: 4,
+    importance: 3,
+  },
+  {
+    text: 'I know design tools like Sketch, Adobe Illustrator, or Photoshop well.',
+    type: 'design',
+    difficulty: 2,
+    importance: 4,
+  },
+  {
+    text: 'I can write a regex.',
+    type: 'back',
+    difficulty: 4,
+    importance: 4,
+  },
+  {
+    text: 'I know the difference between == and ===.',
+    type: 'js',
+    difficulty: 2,
+    importance: 5,
+  },
+  {
+    text: 'I know when to use call() vs. apply().',
+    type: 'js',
+    difficulty: 2,
+    importance: 4,
+  },
+  {
+    text: 'I understand how the browser paints a webpage.',
+    type: 'back',
+    difficulty: 3,
+    importance: 5,
+  },
+  {
+    text: 'I am comfortable recommending server-side caching techniques.',
+    type: 'back',
+    difficulty: 3,
+    importance: 5,
+  },
+  {
+    text: 'I enjoy designing page layouts.',
+    type: 'design',
+    difficulty: 2,
+    importance: 4,
+  },
+  {
+    text: 'I enjoy architecting a stylesheet.',
+    type: 'front',
+  },
+  {
+    text: 'Alan Turing, Grace Hopper, and Claude Shannon are heroes.',
+    type: 'back',
+  },
+  {
+    text: 'Paula Scher, Dieter Rams, and Stefan Sagmeister are heroes.',
+    type: 'design',
+  },
+  {
+    text: 'Jeffrey Zeldman, Eric Meyer, and Harry Roberts are heroes.',
+    type: 'front',
+  },
+  {
+    text: 'Bad kerning bothers me.',
+    type: 'design',
+  },
+  {
+    text: 'I know the difference between the Quick Sort and Merge Sort algorithms.',
+    type: 'back',
+  },
+  {
+    text: 'I am comfortable referring to a stack trace when debugging my code.',
+    type: 'back',
+  },
+  {
+    text: 'I gain meaningful information from CSS-Tricks.',
+    type: 'front',
+  },
+  {
+    text: 'I can style a satisfying-to-click button.',
+    type: 'front',
+  },
+  {
+    text: 'This bothers me: &lt;IMG SRC=\"\">.',
+    type: 'front',
+  },
+  {
+    text: 'I can easily debug CSS specificity.',
+    type: 'front',
+  },
+  {
+    text: 'I know how to identify garbage collection using dev tools.',
+    type: 'js',
+  },
+];
+/* harmony export (immutable) */ __webpack_exports__["a"] = questions;
+
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 var g;
@@ -17440,7 +17332,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 7 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -17465,6 +17357,97 @@ module.exports = function(module) {
 	}
 	return module;
 };
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_app_css__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_app_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_app_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__questions_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Scores_js__ = __webpack_require__(2);
+
+
+
+
+
+
+
+// Questions array import
+const questions = __WEBPACK_IMPORTED_MODULE_2__questions_js__["a" /* questions */];
+
+let Scores = __WEBPACK_IMPORTED_MODULE_3__Scores_js__["a" /* createScoresObject */](questions),
+    currentQuestionIndex = 0,
+    currentQuestionType,
+    currentQuestionText;
+
+let isLastQuestion = () => {
+  if( currentQuestionIndex == questions.length - 1 ) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+function setCurrentQuestionText() {
+  currentQuestionType = questions[currentQuestionIndex].type,
+  currentQuestionText = questions[currentQuestionIndex].text;
+
+  document.querySelector('#js-question').innerHTML = currentQuestionText;
+  document.querySelector('#js-question-type').innerHTML = currentQuestionType;
+}
+
+function setEndOfQuizText() {
+  document.querySelector('#js-question').innerHTML = "No more questions.";
+  document.querySelector('.answers-list').innerHTML = "Done!";
+}
+
+function updateBarWidth(el, val) {
+  let width = el.offsetWidth,
+      oldWidth = parseInt(width, 10),
+      newWidth = oldWidth + val*10 + 'px';
+  if( val !== 0 ) {
+    el.style.width = newWidth;
+  }
+}
+
+function updateQuestion() {
+  currentQuestionIndex++;
+  if (isLastQuestion()) {
+    setEndOfQuizText();
+  } else {
+    setCurrentQuestionText();
+  }
+}
+
+setCurrentQuestionText();
+
+// Use event delegation to handle the click event
+document.getElementById('js-answers').addEventListener('click', function(e) {
+
+  updateQuestion();
+
+  if(e.target && e.target.nodeName === 'LI') {
+
+    let currentQuestion = questions[currentQuestionIndex - 1],
+        targetType = currentQuestion.type,
+        clickedScore = +e.target.dataset.score,
+        targetEl = document.getElementById(targetType + 'Value');
+
+    // Update scores
+    Scores[targetType] += clickedScore;
+    targetEl.innerHTML = Scores[targetScore];
+
+    updateBarWidth(targetEl, clickVal);
+
+  }
+
+});
 
 
 /***/ })

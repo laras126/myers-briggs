@@ -91,7 +91,7 @@ export const questions = [
     type: 'front',
   },
   {
-    text: 'I enjoy debugging CSS.',
+    text: 'I can easily debug CSS specificity.',
     type: 'front',
   },
   {
