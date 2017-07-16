@@ -17165,36 +17165,7 @@
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)(module)))
 
 /***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = createScoresObject;
-function createScoresObject(ques) {
-  let Scores = {};
-
-  ques.forEach( qdata => {
-    if( !Scores.hasOwnProperty(qdata.type) ) {
-      Scores[qdata.type] = 0;
-
-      // Add to UI
-      let div = document.getElementById('bar-template'),
-          clone = div.cloneNode(true);
-
-      clone.removeAttribute('id');
-      clone.children[0].innerHTML = qdata.type;
-      clone.children[1].innerHTML = Scores[qdata.type];
-      clone.children[1].id = qdata.type + 'Value';
-
-      document.querySelector('#js-bar-container').appendChild(clone);
-    }
-  });
-
-  return Scores;
-}
-
-
-/***/ }),
+/* 2 */,
 /* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -17370,7 +17341,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_app_css__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_app_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_app_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__questions_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Scores_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scores_js__ = __webpack_require__(8);
 
 
 
@@ -17381,7 +17352,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // Questions array import
 const questions = __WEBPACK_IMPORTED_MODULE_2__questions_js__["a" /* questions */];
 
-let Scores = __WEBPACK_IMPORTED_MODULE_3__Scores_js__["a" /* createScoresObject */](questions),
+let Scores = __WEBPACK_IMPORTED_MODULE_3__scores_js__["a" /* createScoresObject */](questions),
     currentQuestionIndex = 0,
     currentQuestionType,
     currentQuestionText;
@@ -17448,6 +17419,37 @@ document.getElementById('js-answers').addEventListener('click', function(e) {
   }
 
 });
+
+
+/***/ }),
+/* 7 */,
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = createScoresObject;
+function createScoresObject(ques) {
+  let Scores = {};
+
+  ques.forEach( qdata => {
+    if( !Scores.hasOwnProperty(qdata.type) ) {
+      Scores[qdata.type] = 0;
+
+      // Add to UI
+      let div = document.getElementById('bar-template'),
+          clone = div.cloneNode(true);
+
+      clone.removeAttribute('id');
+      clone.children[0].innerHTML = qdata.type;
+      clone.children[1].innerHTML = Scores[qdata.type];
+      clone.children[1].id = qdata.type + 'Value';
+
+      document.querySelector('#js-bar-container').appendChild(clone);
+    }
+  });
+
+  return Scores;
+}
 
 
 /***/ })

@@ -3,7 +3,7 @@ import _ from 'lodash';
 import styles from './css/app.css';
 
 import * as ques from './questions.js';
-import * as Score from './Scores.js';
+import * as Score from './scores.js';
 
 // Questions array import
 const questions = ques.questions;
