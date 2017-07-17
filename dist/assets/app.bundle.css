@@ -429,8 +429,7 @@ template {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  width: 15px;
-  padding-right: 3px;
+  width: 18px;
 }
 #backValue {
   background-color: lightslategray;
@@ -452,10 +451,15 @@ body {
   color: #444;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
-.app {
-  text-align: center;
+.container {
   max-width: 720px;
   margin: auto;
+}
+.app-content,
+.app-header {
+  text-align: center;
+}
+.app-content {
   padding-bottom: 2rem;
 }
 .app-header {

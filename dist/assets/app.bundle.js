@@ -17165,70 +17165,73 @@
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)(module)))
 
 /***/ }),
-/* 2 */,
-/* 3 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return questions; });
 
 // Static questions data
 
-const questions = [
+var questions = [
   {
     text: 'I can shard a database.',
     type: 'back',
     difficulty: 4,
-    importance: 3,
+    multiplier: 0.9,
   },
   {
     text: 'I know design tools like Sketch, Adobe Illustrator, or Photoshop well.',
     type: 'design',
     difficulty: 2,
-    importance: 4,
+    multiplier: 1.2,
   },
   {
     text: 'I can write a regex.',
     type: 'back',
     difficulty: 4,
-    importance: 4,
+    multiplier: 1.1,
   },
   {
     text: 'I know the difference between == and ===.',
     type: 'js',
     difficulty: 2,
-    importance: 5,
+    multiplier: 1.3,
   },
   {
     text: 'I know when to use call() vs. apply().',
     type: 'js',
     difficulty: 2,
-    importance: 4,
+    multiplier: 1.3,
   },
   {
     text: 'I understand how the browser paints a webpage.',
     type: 'back',
     difficulty: 3,
-    importance: 5,
+    multiplier: 1.5,
   },
   {
     text: 'I am comfortable recommending server-side caching techniques.',
     type: 'back',
     difficulty: 3,
-    importance: 5,
+    multiplier: 0.7,
   },
   {
     text: 'I enjoy designing page layouts.',
     type: 'design',
     difficulty: 2,
-    importance: 4,
+    multiplier: 1.2,
   },
   {
     text: 'I enjoy architecting a stylesheet.',
     type: 'front',
+    multiplier: 1.4,
   },
   {
     text: 'Alan Turing, Grace Hopper, and Claude Shannon are heroes.',
     type: 'back',
+    multiplier: 1,
+
   },
   {
     text: 'Paula Scher, Dieter Rams, and Stefan Sagmeister are heroes.',
@@ -17271,8 +17274,36 @@ const questions = [
     type: 'js',
   },
 ];
-/* harmony export (immutable) */ __webpack_exports__["a"] = questions;
 
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = createScoresObject;
+function createScoresObject(ques) {
+  let Scores = {};
+
+  ques.forEach( qdata => {
+    if( !Scores.hasOwnProperty(qdata.type) ) {
+      Scores[qdata.type] = 0;
+
+      // Add score bar to UI based on template and score types
+      let div = document.getElementById('bar-template'),
+          clone = div.cloneNode(true);
+
+      clone.removeAttribute('id');
+      clone.children[0].innerHTML = qdata.type;
+      clone.children[1].innerHTML = Scores[qdata.type];
+      clone.children[1].id = qdata.type + 'Value';
+
+      document.querySelector('#js-bar-container').appendChild(clone);
+    }
+  });
+
+  return Scores;
+}
 
 
 /***/ }),
@@ -17340,8 +17371,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_app_css__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_app_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_app_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__questions_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scores_js__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__questions_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scores_js__ = __webpack_require__(3);
 
 
 
@@ -17349,107 +17380,81 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-// Questions array import
-const questions = __WEBPACK_IMPORTED_MODULE_2__questions_js__["a" /* questions */];
+// Elements
+const QUESTION = document.querySelector('#js-question'),
+      QUESTION_TYPE = document.querySelector('#js-question-type'),
+      ANSWERS = document.querySelector('#js-answers');
 
-let Scores = __WEBPACK_IMPORTED_MODULE_3__scores_js__["a" /* createScoresObject */](questions),
+// Global variables
+var questions = __WEBPACK_IMPORTED_MODULE_2__questions_js__["a" /* questions */],
+    Scores = __WEBPACK_IMPORTED_MODULE_3__scores_js__["a" /* createScoresObject */](questions),
     currentQuestionIndex = 0,
     currentQuestionType,
     currentQuestionText;
-
-let isLastQuestion = () => {
-  if( currentQuestionIndex == questions.length - 1 ) {
-    return true;
-  } else {
-    return false;
-  }
-};
 
 function setCurrentQuestionText() {
   currentQuestionType = questions[currentQuestionIndex].type,
   currentQuestionText = questions[currentQuestionIndex].text;
 
-  document.querySelector('#js-question').innerHTML = currentQuestionText;
-  document.querySelector('#js-question-type').innerHTML = currentQuestionType;
+  QUESTION.innerHTML      = currentQuestionText;
+  QUESTION_TYPE.innerHTML = currentQuestionType;
 }
 
 function setEndOfQuizText() {
-  document.querySelector('#js-question').innerHTML = "No more questions.";
-  document.querySelector('.answers-list').innerHTML = "Done!";
+  QUESTION.innerHTML = "No more questions.";
+  ANSWERS.innerHTML = "Done!";
 }
 
-function updateBarWidth(el, val) {
-  let width = el.offsetWidth,
-      oldWidth = parseInt(width, 10),
-      newWidth = oldWidth + val*10 + 'px';
-  if( val !== 0 ) {
-    el.style.width = newWidth;
-  }
-}
-
-function updateQuestion() {
+function handleQuestionUpdate() {
   currentQuestionIndex++;
-  if (isLastQuestion()) {
+
+  let isLastQuestion = currentQuestionIndex === questions.length ? true : false;
+
+  if (isLastQuestion) {
     setEndOfQuizText();
   } else {
     setCurrentQuestionText();
   }
 }
 
-setCurrentQuestionText();
+function applyNewBarWidth(newWidth, el) {
+  el.style.width = newWidth + 'px';
+}
+
+// Set up quiz
+window.addEventListener('DOMContentLoaded', () => {
+  setCurrentQuestionText();
+});
 
 // Use event delegation to handle the click event
-document.getElementById('js-answers').addEventListener('click', function(e) {
-
-  updateQuestion();
+ANSWERS.addEventListener('click', (e) => {
 
   if(e.target && e.target.nodeName === 'LI') {
 
+    handleQuestionUpdate();
+
     let currentQuestion = questions[currentQuestionIndex - 1],
+        scoreMultiplier = currentQuestion.multiplier ? currentQuestion.multiplier : 1,
         targetType = currentQuestion.type,
         clickedScore = +e.target.dataset.score,
         targetEl = document.getElementById(targetType + 'Value');
 
+    let newBarWidth = ((el, val, multiplier) => {
+      let oldWidth = targetEl.offsetWidth,
+          widthToAdd = Math.round(val*multiplier),
+          newWidth = widthToAdd + oldWidth;
+      return newWidth;
+    })(targetEl, clickedScore, scoreMultiplier);
+
     // Update scores
     Scores[targetType] += clickedScore;
-    targetEl.innerHTML = Scores[targetScore];
+    targetEl.innerHTML = Scores[targetType];
 
-    updateBarWidth(targetEl, clickVal);
+    applyNewBarWidth(newBarWidth, targetEl);
 
   }
 
 });
-
-
-/***/ }),
-/* 7 */,
-/* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = createScoresObject;
-function createScoresObject(ques) {
-  let Scores = {};
-
-  ques.forEach( qdata => {
-    if( !Scores.hasOwnProperty(qdata.type) ) {
-      Scores[qdata.type] = 0;
-
-      // Add to UI
-      let div = document.getElementById('bar-template'),
-          clone = div.cloneNode(true);
-
-      clone.removeAttribute('id');
-      clone.children[0].innerHTML = qdata.type;
-      clone.children[1].innerHTML = Scores[qdata.type];
-      clone.children[1].id = qdata.type + 'Value';
-
-      document.querySelector('#js-bar-container').appendChild(clone);
-    }
-  });
-
-  return Scores;
-}
 
 
 /***/ })
