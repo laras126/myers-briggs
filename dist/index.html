@@ -8,35 +8,37 @@
     </head>
     <body>
 
-      <section id="js-app" class="app">
-
-        <header class="app-header">
+      <header class="app-header">
+        <div class="container">
           <h1 class="app-title">Myers Briggs for Web People</h1>
           <p class="app-tagline">a.k.a. The Unicorn Test</p>
-        </header>
-
-        <div class="question">
-          <p class="question-text" id="js-question"></p>
-          <p class="caption question-type" id="js-question-type"></p>
         </div>
+      </header>
 
-        <div class="answers-container">
-          <ul class="answers-list" id="js-answers">
-            <li class="answer" data-score="0">0 <span class="caption answer-caption -first">Don't know/Disagree</span></li>
-            <li class="answer" data-score="1">1</li>
-            <li class="answer" data-score="2">2</li>
-            <li class="answer" data-score="3">3</li>
-            <li class="answer" data-score="4">4 <span class="caption answer-caption -last">Know well/Strongly agree</span></li>
-          </ul>
-        </div>
+      <section class="app-content">
+        <div class="container">
+          <div class="question">
+            <p class="question-text" id="js-question"></p>
+            <p class="caption question-type" id="js-question-type"></p>
+          </div>
 
-        <div class="bar-container" id="js-bar-container">
-          <div class="bar" id="bar-template">
-            <div class="bar-title caption"></div>
-            <span class="bar-value"></span>
+          <div class="answers-container">
+            <ul class="answers-list" id="js-answers">
+              <li class="answer" data-score="0">0 <span class="caption answer-caption -first">Don't know/Disagree</span></li>
+              <li class="answer" data-score="1">1</li>
+              <li class="answer" data-score="2">2</li>
+              <li class="answer" data-score="3">3</li>
+              <li class="answer" data-score="4">4 <span class="caption answer-caption -last">Know well/Strongly agree</span></li>
+            </ul>
+          </div>
+
+          <div class="bar-container" id="js-bar-container">
+            <div class="bar" id="bar-template">
+              <div class="bar-title caption"></div>
+              <span class="bar-value"></span>
+            </div>
           </div>
         </div>
-
       </section>
 
       <script src="./assets/app.bundle.js"></script>
