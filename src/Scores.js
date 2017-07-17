@@ -5,7 +5,7 @@ export function createScoresObject(ques) {
     if( !Scores.hasOwnProperty(qdata.type) ) {
       Scores[qdata.type] = 0;
 
-      // Add to UI
+      // Add score bar to UI based on template and score types
       let div = document.getElementById('bar-template'),
           clone = div.cloneNode(true);
 
