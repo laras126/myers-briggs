@@ -17228,18 +17228,18 @@ var questions = [
     multiplier: 1.4,
   },
   {
-    text: 'Alan Turing, Grace Hopper, and Claude Shannon are heroes.',
+    text: 'I am greatly inspired by the work of Alan Turing, Grace Hopper, and Claude Shannon.',
     type: 'back',
     multiplier: 1,
 
   },
   {
-    text: 'Paula Scher, Dieter Rams, and Stefan Sagmeister are heroes.',
+    text: 'I am greatly inspired by the work of Paula Scher, Dieter Rams, and Stefan Sagmeister.',
     type: 'design',
   },
   {
-    text: 'Jeffrey Zeldman, Eric Meyer, and Harry Roberts are heroes.',
-    type: 'front',
+    text: 'I am greatly inspired by publications like CSS-Tricks, A List Apart, and Smashing Magazine.',
+    type: 'design',
   },
   {
     text: 'Bad kerning bothers me.',
@@ -17252,10 +17252,6 @@ var questions = [
   {
     text: 'I am comfortable referring to a stack trace when debugging my code.',
     type: 'back',
-  },
-  {
-    text: 'I gain meaningful information from CSS-Tricks.',
-    type: 'front',
   },
   {
     text: 'I can style a satisfying-to-click button.',
